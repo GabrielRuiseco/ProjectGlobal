@@ -32,10 +32,20 @@ class UserController {
     try {
       const user = await auth.getUser()
       return {
-        id: user.id
+        id: user.id,
+        state: true
       }
     } catch (error) {
-      response.send(null)
+      return response.json({state: false})
+    }
+  }
+
+  async loginCheck({auth}) {
+    try{
+      const user = await auth.getUser()
+      return !!user;
+    }catch (e){
+      return false
     }
   }
 

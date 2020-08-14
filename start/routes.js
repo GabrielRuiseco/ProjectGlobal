@@ -20,7 +20,8 @@ Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
 
-Route.post('login', 'UserController.login')
-Route.post('register', 'UserController.register')
-Route.get('getuser/:id', 'UserController.show').middleware('auth')
-Route.post('loggedIn','UserController.loggedIn').middleware('auth')
+Route.post('emp/login', 'UserController.login')
+Route.post('emp/register', 'UserController.register')
+Route.get('emp/getuser/:id', 'UserController.show').middleware('auth')
+Route.get('emp/loggedIn','UserController.loggedIn')
+Route.get('emp/loginCheck','UserController.loginCheck')
