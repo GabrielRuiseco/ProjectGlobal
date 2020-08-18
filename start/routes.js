@@ -25,3 +25,14 @@ Route.post('emp/register', 'UserController.register')
 Route.get('emp/getuser/:id', 'UserController.show').middleware('auth')
 Route.get('emp/loggedIn','UserController.loggedIn')
 Route.get('emp/loginCheck','UserController.loginCheck')
+
+Route.post('api/uploadimg/:id','MongoDbDocumentController.uploadImg')
+Route.get('api/index/','MongoDbDocumentController.index')
+Route.post('api/delete/:id','MongoDbDocumentController.delete')
+Route.get('api/downloadimg','MongoDbDocumentController.downloadImg')
+Route.get('api/downloadit/:fileName','MongoDbDocumentController.downloadit')
+Route.put('api/deleteimg','MongoDbDocumentController.deleteImg')
+
+
+
+
