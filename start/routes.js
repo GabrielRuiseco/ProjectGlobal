@@ -31,7 +31,11 @@ Route.get('api/index/','MongoDbDocumentController.index')
 Route.post('api/delete/:id','MongoDbDocumentController.delete')
 Route.get('api/downloadimg','MongoDbDocumentController.downloadImg')
 Route.get('api/downloadit/:fileName','MongoDbDocumentController.downloadit')
-Route.put('api/deleteimg','MongoDbDocumentController.deleteImg')
+Route.post('api/deleteimg','MongoDbDocumentController.deleteImg')
+
+Route.post('api/compare','FaceApiController.compareImg')
+Route.get('api/getList','FaceApiController.getList')
+
 
 
 
