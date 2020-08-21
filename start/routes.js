@@ -26,15 +26,14 @@ Route.get('emp/getuser/:id', 'UserController.show').middleware('auth')
 Route.get('emp/loggedIn','UserController.loggedIn')
 Route.get('emp/loginCheck','UserController.loginCheck')
 
-Route.post('api/uploadimg/:id','MongoDbDocumentController.uploadImg')
-Route.get('api/index/','MongoDbDocumentController.index')
-Route.post('api/delete/:id','MongoDbDocumentController.delete')
+Route.post('api/uploadimg/:id','MongoDbDocumentController.uploadImg').middleware('auth')
+Route.get('api/index/:id','MongoDbDocumentController.index').middleware('auth')
+Route.delete('api/delete/:id','MongoDbDocumentController.delete').middleware('auth')
 Route.get('api/downloadimg','MongoDbDocumentController.downloadImg')
 Route.get('api/downloadit/:fileName','MongoDbDocumentController.downloadit')
-Route.post('api/deleteimg','MongoDbDocumentController.deleteImg')
-
-Route.post('api/compare','FaceApiController.compareImg')
-Route.get('api/getList','FaceApiController.getList')
+Route.delete('api/deleteimg/:fileName','MongoDbDocumentController.deleteImg').middleware('auth')
+Route.post('api/compare','FaceApiController.compareImg').middleware('auth')
+Route.get('api/getList','FaceApiController.getList').middleware('auth')
 
 
 

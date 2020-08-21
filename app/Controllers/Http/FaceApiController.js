@@ -1,23 +1,53 @@
 'use strict'
 const axios = require('axios');
-const Drive = use('Drive')
+const Helpers = use('Helpers');
+const Drive = use('Drive');
+const FormData = require('form-data');
+
 class FaceApiController {
 
   async compareImg({request, response}) {
-    const {path1, path2} = request.only(['path1', 'path2'])
     const url = 'https://api-us.faceplusplus.com/facepp/v3/compare'
-    const img1 = await Drive.get(`uploads/${path1}`);
-    const img2 = await Drive.get(`uploads/${path2}`);
+    const img1 = request.file('img1', {
+      type: ['image'],
+      size: '2mb',
+      allowedExtensions: ['jpg', 'png']
+    })
+    const img2 = request.file('img2', {
+      type: ['image'],
+      size: '2mb',
+      allowedExtensions: ['jpg', 'png']
+    })
+    let bodyFormData = new FormData();
+    bodyFormData.append('image_file1', img1);
+    bodyFormData.append('image_file2', img2);
 
-    const options = {
+    const body = {
       api_key: '6hnA_UbbOSuxzVyriF7YJPBNvp9LYEMs',
       api_secret: 'qWhdlomuGzVdp9rjQ3_ayTXtvTsYsOuu',
-      image_url1: `127.0.0.1:3000/api/downloadit/${path1}`,
-      image_url2: `127.0.0.1:3000/api/downloadit/${path2}`
+      image_file1: img1,
+      image_file2: img2
     };
-    await axios.post(url, options).then(function (res) {
-      return response.json(res);
+
+    axios({
+      method: 'post',
+      url: url,
+
+      data: {
+        bodyFormData,
+        api_key: '6hnA_UbbOSuxzVyriF7YJPBNvp9LYEMs',
+        api_secret: 'qWhdlomuGzVdp9rjQ3_ayTXtvTsYsOuu'
+      },
+      headers: {'Content-Type': 'multipart/form-data'}
     })
+      .then(function (response) {
+        //handle success
+        console.log(response);
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+      });
   }
 
 
