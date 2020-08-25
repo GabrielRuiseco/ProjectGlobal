@@ -1,10 +1,34 @@
 'use strict'
+var rp = require('request-promise');
 const axios = require('axios');
 const Helpers = use('Helpers');
 const Drive = use('Drive');
 const FormData = require('form-data');
 
 class FaceApiController {
+
+  async servoOnOff(params) {
+    const state=params;
+    let options = {
+      method:'POST',
+      uri: 'https://io.adafruit.com/api/v2/gabriel_rc/feeds/default.digital/data',
+      headers: {
+        'User-Agent': 'Request-Promise',
+        'X-AIO-Key': 'aio_HmLc12I257sUDLxLlHHWV9SLYavr'
+      },
+      body:{
+        "datum":{"value":{state}}
+      }
+    };
+
+    await rp(options)
+      .then(function (response) {
+        return "Servo "+{state};
+      })
+      .catch(function (err) {
+        return "Error";
+      });
+  }
 
   async compareImg({request, response}) {
     const url = 'https://api-us.faceplusplus.com/facepp/v3/compare'

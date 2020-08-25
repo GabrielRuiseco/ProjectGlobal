@@ -10,7 +10,7 @@ let directorio = new Schema({
   fileName: String,
   imgsrc_route: String,
   idu: Number,
-  expire_at: {type: Date, default: Date.now, expires: 172800000}
+  expireAt: {type: Date, default: Date.now, expires: 172800000}
 });
 
 let Directorio = mongoose.model('directorio', directorio);
@@ -19,7 +19,7 @@ let Directorio = mongoose.model('directorio', directorio);
 class MongoDbDocumentController {
 
   async mongoConnect() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/adonismongo", {
+    await mongoose.connect('mongodb+srv://Admin:123asterisco@practica1-hjadu.mongodb.net/adonismongo?retryWrites=true&w=majority', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
