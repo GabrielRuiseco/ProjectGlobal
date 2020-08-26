@@ -16,7 +16,11 @@ module.exports = {
   | Function - Receives the current origin and should return one of the above values.
   |
   */
+<<<<<<< HEAD
   origin: '*',
+=======
+  origin:'*',
+>>>>>>> 6904f7321c7160172869017cfbb062c1f2ae239d
 
   /*
   |--------------------------------------------------------------------------
